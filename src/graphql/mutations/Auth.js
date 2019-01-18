@@ -8,13 +8,17 @@ const loginUser = async (obj, { email, password }) => {
 
   if (!user) {
     return {
-      error: 'Email does not exist.',
+      error: {
+        message: 'Email does not exist.'
     }
   }
+}
 
   if (!user) {
     return {
-      error: 'Password not provided',
+      error: {
+        message: 'Password not provided'
+      } 
     }
   }
 
@@ -22,7 +26,9 @@ const loginUser = async (obj, { email, password }) => {
 
   if (!valid) {
     return {
-      error: 'Invalid password.',
+      error: {
+        message: 'Invalid password.'
+      } 
     }
   }
 

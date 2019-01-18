@@ -8,17 +8,38 @@ module.exports = gql`
       hometown: String
       house: String
       concentration: String
+      hobbies: String
     ): [User!]
     post(id: ID!): Post!
     posts: [Post!]
+    follows (
+      status: String!
+      followerId: ID!
+    ): [Follows!]
   }
 
   type Mutation {
     createUser(input: CreateUserInput!): LoginReturn!
     createPost(content: String!): CreatePostReturn!
+    # createFollow(followerId: ID!, followingId: ID!, status: String!): CreateFollowsReturn!
+    # editFollow(id: ID!, status: String!): EditFollowReturn!
     editPost(id: ID!, newContent: String!): EditPostReturn!
     loginUser(email: String!, password: String!): LoginReturn!
   }
+
+  # type CreateFollowsReturn {
+  #   followerId: ID!
+  #   followingId: ID!
+  #   status: String!
+  #   error: Error
+  # }
+
+  # type editFollowReturn {
+  #   followerId: ID!
+  #   followingId: ID!
+  #   status: String!
+  #   error: Error
+  # }
 
   type CreatePostReturn {
     post: Post
@@ -59,6 +80,13 @@ module.exports = gql`
     gender: String
     bio: String
     picture: String
+  }
+
+  type Follows {
+    id: ID!
+    followerId: ID!
+    followingId: ID!
+    status: String!
   }
 
   type Post {
